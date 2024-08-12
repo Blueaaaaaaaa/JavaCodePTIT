@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        long dai =
+        System.out.println("Hello PTIT.");
     }
 }
