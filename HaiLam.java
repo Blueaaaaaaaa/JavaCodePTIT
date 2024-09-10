@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class J01001 - HÌNH CHỮ NHẬT{
+public class HaiLam {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int dai = sc.nextInt();
