@@ -3,13 +3,19 @@ import java.util.Scanner;
 public class HaiLam {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        long sum = 0;
-        long factorial = 1;
-        for (int i = 1; i <= n; i++) {
-            factorial *= i;
-            sum += factorial;
+        int testcase = sc.nextInt();
+        while (testcase-- > 0) {
+            int a = sc.nextInt(), b = sc.nextInt();
+            System.out.println(lcm(a, b) + " " + gcd(a, b));
         }
-        System.out.println(sum);
+    }
+
+    public static int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+    public static long lcm(int a, int b) {
+        return (long) a * b / gcd(a, b);
     }
 }
