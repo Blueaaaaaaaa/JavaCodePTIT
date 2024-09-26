@@ -1,25 +1,30 @@
 import java.util.Scanner;
-import java.util.Arrays;
-import java.util.Comparator;
 
 public class HaiLam {
-    public static long Fibonacci(int n) {
-        long[] fib = new long[n + 1];
-        fib[0] = 0;
-        if (n > 0) {
-            fib[1] = 1;
+    public static boolean isFibonacci(long n) {
+        long a = 0;
+        long b = 1;
+        if (n == a || n == b) return true;
+        long c = a + b;
+        while (c <= n) {
+            if (c == n) return true;
+            a = b;
+            b = c;
+            c = a + b;
         }
-        for (int i = 2; i <= n; i++) {
-            fib[i] = fib[i - 1] + fib[i - 2];
-        }
-        return fib[n];
+        return false;
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int testcase = sc.nextInt();
-        while (testcase-- > 0) {
-            int n = sc.nextInt();
-            System.out.println(Fibonacci(n));
+        int T = sc.nextInt();
+        while (T-- > 0) {
+            long n = sc.nextLong();
+            if (isFibonacci(n)) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
         }
     }
 }
