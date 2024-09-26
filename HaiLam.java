@@ -1,16 +1,30 @@
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class HaiLam {
+    public static int tong(int n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int test = sc.nextInt();
-        while(test --> 0){
-            int n = sc.nextInt();
-            int[] a = new int[n];
-            for(int i = 0; i < n; i++){
-                a[i] = sc.nextInt();
+        int a = sc.nextInt();
+        Integer[] arr = new Integer[a];
+        for (int i = 0; i < a; i++) {
+            arr[i] = sc.nextInt();
+        }
+        Arrays.sort(arr, new Comparator<Integer>() {
+            public int compare(Integer a, Integer b) {
+                return tong(a) - tong(b);
             }
-            Arrays.sort(a);
-            
+        });
+        for (int x : arr) {
+            System.out.println(x);
+        }
     }
 }
