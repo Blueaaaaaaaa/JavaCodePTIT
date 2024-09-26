@@ -3,28 +3,23 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class HaiLam {
-    public static int primes(int n) {
-        if (n < 2){
-            return 0;
+    public static long Fibonacci(int n) {
+        long[] fib = new long[n + 1];
+        fib[0] = 0;
+        if (n > 0) {
+            fib[1] = 1;
         }
-        for (int i = 2; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                return 0;
-            }
+        for (int i = 2; i <= n; i++) {
+            fib[i] = fib[i - 1] + fib[i - 2];
         }
-        return 1;
+        return fib[n];
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int testcase = sc.nextInt();
         while (testcase-- > 0) {
             int n = sc.nextInt();
-            if (primes(n) == 1) {
-                System.out.println("YES");
-            } else {
-                System.out.println("NO");
-            }
+            System.out.println(Fibonacci(n));
         }
     }
 }
