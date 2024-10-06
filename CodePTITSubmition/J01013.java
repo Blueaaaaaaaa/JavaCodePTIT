@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.regex.*;
 import java.util.stream.*;
 
-public class Code {
+public class J01013 {
 
    static int a[] = new int[2000001];
 
