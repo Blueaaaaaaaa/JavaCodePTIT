@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class J02021 {
+public class J02022 {
     static int n;
     static int[] a;
     static boolean[] used;
