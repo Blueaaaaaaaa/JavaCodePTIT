@@ -7,10 +7,13 @@ public class Code {
         sc.nextLine();
         while (testcase-- > 0) {
             String[] s = sc.nextLine().trim().toLowerCase().split("\\s+");
-            for (String word : s) {
-                System.out.print(word.substring(0, 1).toUpperCase() + word.substring(1) + " ");
+            for (int i = 1 ; i < s.length ; i++) {
+                System.out.print(s[i].substring(0, 1).toUpperCase() + s[i].substring(1));
+                if (i != s.length - 1) {
+                    System.out.print(" ");
+                }
             }
-            System.out.println();
+            System.out.println(", " + s[0].toUpperCase());
         }
     }
 }
