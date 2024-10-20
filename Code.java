@@ -1,19 +1,26 @@
 import java.util.*;
 
 public class Code {
+    public static String Reverse(String s) {
+        return new StringBuilder(s).reverse().toString();
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int testcase = sc.nextInt();
         sc.nextLine();
         while (testcase-- > 0) {
-            String[] s = sc.nextLine().trim().toLowerCase().split("\\s+");
-            for (int i = 1 ; i < s.length ; i++) {
-                System.out.print(s[i].substring(0, 1).toUpperCase() + s[i].substring(1));
-                if (i != s.length - 1) {
-                    System.out.print(" ");
+            String s = sc.nextLine();
+            boolean check = true;
+            // if (s != Reverse(s)) {
+            //     check = false;
+            // }
+            for (int i = 0 ; i < s.length() ; i++) {
+                if ((s.charAt(i) - '0') % 2 != 0) {
+                    check = false;
+                    break;
                 }
             }
-            System.out.println(", " + s[0].toUpperCase());
+            System.out.println(check ? "YES" : "NO");
         }
     }
 }
