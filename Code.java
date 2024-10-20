@@ -11,14 +11,15 @@ public class Code {
         while (testcase-- > 0) {
             String s = sc.nextLine();
             boolean check = true;
-            // if (s != Reverse(s)) {
-            //     check = false;
-            // }
+            if (s.charAt(0) != '8' || s.charAt(s.length() - 1) != '8') {
+                check = false;
+            }
+            int sum = 0;
             for (int i = 0 ; i < s.length() ; i++) {
-                if ((s.charAt(i) - '0') % 2 != 0) {
-                    check = false;
-                    break;
-                }
+                sum += s.charAt(i) - '0';
+            }
+            if (sum % 10 != 0) {
+                check = false;
             }
             System.out.println(check ? "YES" : "NO");
         }
