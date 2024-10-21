@@ -1,7 +1,3 @@
-/*
- * XÂU ĐỐI XỨNG
- * @author TaDuy
- */
 import java.util.Scanner;
 
 public class J03025 {
@@ -24,6 +20,5 @@ public class J03025 {
                 System.out.println(dem == 1 ? "YES" : "NO");
             }
         }
-        sc.close();
     }
 }
