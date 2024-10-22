@@ -3,18 +3,22 @@ import java.util.*;
 public class Code {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        int sum = 0;
-        for (char x : s.toCharArray()){
-            if (x == '4' || x == '7'){
-                sum++;
+        int testcase = sc.nextInt();
+        while (testcase-- > 0) {
+            long n = sc.nextLong();
+            long res = 1;
+            for (long i = 2; i * i <= n; i++) {
+                if (n % i == 0) {
+                    res = i;
+                    while (n % i == 0) {
+                        n /= i;
+                    }
+                }
             }
-        }
-        if (sum == 4 || sum == 7){
-            System.out.println("YES");
-        }
-        else{
-            System.out.println("NO");
+            if (n > 1) {
+                res = n;
+            }
+            System.out.println(res);
         }
     }
 }
