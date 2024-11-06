@@ -1,13 +1,19 @@
-package Java;
-
 public class SinhVien {
-    public void display() {
-        System.out.println("Display Method");
-    }
-    SinhVien() {
-      System.out.println("Connect To Class Sinh Vien");
-    }
-    public void Hello_World(){
-      System.out.println("Hello, World!");
-    }
+  private String SID;
+  private String Name;
+  private String Email;
+
+  public SinhVien() {
+    this.SID = "1234567890";
+    this.Name = "John Doe"; 
+    this.Email = "john.doe@example.com";
+  }
+  public void Hello() {
+    System.out.println("Hello");
+  }
+  public void display() {
+    System.out.println("SID: " + this.SID);
+    System.out.println("Name: " + this.Name);
+    System.out.println("Email: " + this.Email); 
+  }
 }
