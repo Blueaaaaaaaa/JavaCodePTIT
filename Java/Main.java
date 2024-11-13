@@ -1,6 +1,8 @@
+
 public class Main {
-   public static void main(String[] args) {
-      SinhVien sv = new SinhVien();
-      sv.display();
-   }
+    public static void main(String[] args) {
+        Sinhvien sv = new Sinhvien();
+        sv.input();
+        sv.output();
+    }
 }
