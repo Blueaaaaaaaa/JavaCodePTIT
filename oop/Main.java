@@ -1,120 +1,89 @@
-import java.util.*;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+import java.util.Scanner;
 
-class KhachHang {
-    private String maKH; 
-    private String tenKH;
-    private String gioiTinh; 
-    private Date ngaySinh; 
-    private String diaChi;
-    private static int dem = 1; 
-    
-    public KhachHang(String ten, String gioiTinh, String ngaySinh, String diaChi) throws ParseException {
-        this.maKH = String.format("KH%03d", dem++);
-        this.tenKH = ten;
-        this.gioiTinh = gioiTinh;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy \n");
-        this.ngaySinh = sdf.parse(ngaySinh);
-        this.diaChi = diaChi;
-    }
-    
-    public String getMaKH() { return maKH; }
-    public String getTenKH() { return tenKH; }
-    public String getDiaChi() { return diaChi; }
-}
+class Rectangle {
+    // Thuộc tính
+    private double width;
+    private double height;
+    private String color;
 
-class MatHang {
-    private String maMH; 
-    private String tenMH; 
-    private String donViTinh; 
-    private int giaMua;
-    private int giaBan;
-    private static int dem = 1; 
-    
-    public MatHang(String ten, String dvt, int giaMua, int giaBan) {
-        this.maMH = String.format("MH%03d \n", dem++);
-        this.tenMH = ten;
-        this.donViTinh = dvt;
-        this.giaMua = giaMua;
-        this.giaBan = giaBan;
+    // Constructor không tham số
+    public Rectangle() {
+        this.width = 1;
+        this.height = 1;
+        this.color = "White";
     }
-    
-    public String getMaMH() { return maMH; }
-    public String getTenMH() { return tenMH; }
-    public int getGiaMua() { return giaMua; }
-    public int getGiaBan() { return giaBan; }
-}
 
-class HoaDon implements Comparable<HoaDon> {
-    private String maHD;
-    private KhachHang khachHang;
-    private MatHang matHang;
-    private int soLuong;
-    private static int dem = 1; 
-    
-    public HoaDon(KhachHang kh, MatHang mh, int sl) {
-        this.maHD = String.format("HD%03d \n", dem++);
-        this.khachHang = kh;
-        this.matHang = mh;
-        this.soLuong = sl;
+    // Constructor có tham số
+    public Rectangle(double width, double height, String color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
     }
-    
-    public long getThanhTien() {
-        return soLuong * matHang.getGiaBan();
+
+    // Getter và Setter cho chiều rộng
+    public double getWidth() {
+        return width;
     }
-    
-    public long getLoiNhuan() {
-        return soLuong * (matHang.getGiaBan() - matHang.getGiaMua());
+
+    public void setWidth(double width) {
+        this.width = width;
     }
-    
-    @Override
-    public int compareTo(HoaDon o) {
-        return -Long.compare(this.getLoiNhuan(), o.getLoiNhuan());
+
+    // Getter và Setter cho chiều dài
+    public double getHeight() {
+        return height;
     }
-    
-    @Override
-    public String toString() {
-        return String.format("%s %s %s %s %d %d %d \n\n", 
-            maHD, khachHang.getTenKH(), khachHang.getDiaChi(),
-            matHang.getTenMH(), soLuong, getThanhTien(), getLoiNhuan());
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    // Getter và Setter cho màu sắc
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    // Tính diện tích
+    public double findArea() {
+        return width * height;
+    }
+
+    // Tính chu vi
+    public double findPerimeter() {
+        return 2 * (width + height);
+    }
+
+    // Hàm chuẩn hóa màu sắc
+    public String normalizeColor() {
+        return color.substring(0, 1).toUpperCase() + color.substring(1).toLowerCase();
     }
 }
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        int n = Integer.parseInt(sc.nextLine());
-        Map<String, KhachHang> mapKH = new HashMap<>();
-        for(int i = 0; i < n; i++) {
-            KhachHang kh = new KhachHang(sc.nextLine(), sc.nextLine(), 
-                                       sc.nextLine(), sc.nextLine());
-            mapKH.put(kh.getMaKH(), kh);
-        }
-        
-        int m = Integer.parseInt(sc.nextLine());
-        Map<String, MatHang> mapMH = new HashMap<>();
-        for(int i = 0; i < m; i++) {
-            MatHang mh = new MatHang(sc.nextLine(), sc.nextLine(),
-                                   Integer.parseInt(sc.nextLine()),
-                                   Integer.parseInt(sc.nextLine()));
-            mapMH.put(mh.getMaMH(), mh);
-        }
-        
-        int k = Integer.parseInt(sc.nextLine());
-        List<HoaDon> dsHD = new ArrayList<>();
-        for(int i = 0; i < k; i++) {
-            String[] line = sc.nextLine().split(" ");
-            HoaDon hd = new HoaDon(mapKH.get(line[0]), 
-                                  mapMH.get(line[1]),
-                                  Integer.parseInt(line[2]));
-            dsHD.add(hd);
-        }
-        
-        Collections.sort(dsHD);
-        for(HoaDon hd : dsHD) {
-            System.out.println(hd);
+
+        // Nhập chiều rộng, chiều dài và màu sắc
+        double width = sc.nextDouble();
+        double height = sc.nextDouble();
+        String color = sc.next();
+
+        // Kiểm tra tính hợp lệ của dữ liệu
+        if (width <= 0 || height <= 0) {
+            System.out.println("INVALID");
+        } else {
+            // Tạo đối tượng hình chữ nhật
+            Rectangle rectangle = new Rectangle(width, height, color);
+
+            // In thông tin
+            System.out.printf("%.0f %.0f %s\n",
+                    rectangle.findPerimeter(),
+                    rectangle.findArea(),
+                    rectangle.normalizeColor());
         }
     }
 }
