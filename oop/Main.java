@@ -1,27 +1,33 @@
-import java.util.*;
+import java.util.Scanner;
 import java.lang.Math;
 
-public class Main {
-   public static long Fibo(int n) {
-      if (n == 1 || n == 2) {
-         return 1;
-      }
-      long f1 = 1, f2 = 1;
-      long fibo = 0;
-      for (int i = 3; i <= n; i++) { 
-         fibo = f1 + f2;
-         f1 = f2;
-         f2 = fibo;
-      }
-      return fibo;
-   }
+class OOP {
+   private long tuSo;
+   private long mauSo;
 
+   public OOP(long tuSo, long mauSo) {
+      this.tuSo = tuSo; 
+      this.mauSo = mauSo;
+   }
+   public long gcd(long a, long b) {
+      if (b == 0) return a;
+      return gcd(b, a % b);
+   }
+   @Override
+   public String toString() {
+      long ucln = gcd(Math.abs(tuSo), Math.abs(mauSo));
+      tuSo /= ucln;
+      mauSo /= ucln;
+      return tuSo + "/" + mauSo;
+   }
+}
+
+public class Main{
    public static void main(String[] args) {
       Scanner sc = new Scanner(System.in);
-      int testCases = sc.nextInt();
-      while (testCases-- > 0) {
-         int n = sc.nextInt(); 
-         System.out.println(Fibo(n)); 
-      }
+      long tuSo = sc.nextLong();
+      long mauSo = sc.nextLong();
+      OOP phanSo = new OOP(tuSo, mauSo);
+      System.out.println(phanSo);
    }
 }
